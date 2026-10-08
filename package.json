@@ -1,0 +1,38 @@
+{
+  "name": "agent-desk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local desktop session manager for Codex CLI and Claude Code",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "node scripts/check-dev-user.cjs && concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "dev:root": "node scripts/check-root-user.cjs && concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && node scripts/launch-root-electron.cjs\"",
+    "build": "tsc --noEmit && vite build",
+    "test": "node --test tests/*.test.cjs",
+    "start": "npm run dev",
+    "postinstall": "electron-rebuild -f -w node-pty"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.3.1",
+    "@mui/material": "^7.3.1",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
+    "node-pty": "^1.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.2.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.0",
+    "electron": "^44.5.1",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.0",
+    "wait-on": "^8.0.4"
+  }
+}
